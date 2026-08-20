@@ -11,7 +11,8 @@ import (
 
 // newTestContainer returns a minimal container with the resolved process path
 // and arguments set the same way daemon.newContainer resolves them from the
-// merged Entrypoint/Cmd config.
+// merged Entrypoint/Cmd config. At least one of entrypoint or cmd must be
+// non-empty, matching the precondition validated before container creation.
 func newTestContainer(entrypoint, cmd []string) *container.Container {
 	ctr := container.NewBaseContainer("test-id", "/tmp/test-root")
 	ctr.Config = &containertypes.Config{
